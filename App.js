@@ -1,32 +1,29 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Platform,
-  StatusBar as StBar,
-} from "react-native";
-import { colors } from "./src/utils/colors";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import React from "react";
+import { Searchbar } from "react-native-paper";
+import { StatusBar, StyleSheet, SafeAreaView, Text, View } from "react-native";
+import { RestaurentsScreen } from "./src/features/restaurents/screens/restarants.screen";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.search}>Search</Text>
-      <Text style={styles.list}>List</Text>
-    </SafeAreaView>
+    <>
+      <RestaurentsScreen />
+      <ExpoStatusBar style="auto" />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ? StBar.currentHeight : 0,
+    marginTop: StatusBar.currentHeight,
   },
   search: {
-    paddingBottom: 10,
-    backgroundColor: colors.green,
     padding: 16,
   },
-  list: { backgroundColor: colors.blue, flex: 1, padding: 16 },
+  list: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "blue",
+  },
 });
