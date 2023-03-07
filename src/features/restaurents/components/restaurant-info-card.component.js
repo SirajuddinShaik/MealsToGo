@@ -5,10 +5,17 @@ import { Card,Paragraph} from "react-native-paper";
 import styled from "styled-components/native";
 
 import { colors } from "../../../utils/colors";
+import { fontSizes,spacing } from "../../../utils/sizes";
 
-const Title=styled.Text`
-    color:red
+const Title = styled.Text`
+    color:${colors.green};
 `;
+const List1 = styled.View`
+    flex: 1;
+    padding: ${spacing.md};
+    backgroundColor: ${colors.blue};
+`;
+
 
 export const RestaurentInfoCard = (restaurant) => {
     const {
@@ -23,7 +30,7 @@ export const RestaurentInfoCard = (restaurant) => {
         isClosedTemporary,
     } = restaurant;
   return (
-    <View style={styles.list}>
+    <List1>
         <Card>
         <Card.Cover source={{ uri: photos[0]  }} />
     <Card.Content>
@@ -31,14 +38,8 @@ export const RestaurentInfoCard = (restaurant) => {
       <Paragraph>{address}</Paragraph>
     </Card.Content>
     </Card>
-    </View>
+    </List1>
   );
 };
 
-const styles = {
-  list: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: colors.blue,
-  },
-};
+
