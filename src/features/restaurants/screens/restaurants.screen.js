@@ -10,7 +10,6 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 
 import { Search } from "../components/search.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
-import { View } from "react-native";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
