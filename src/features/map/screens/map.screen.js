@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, Text } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import styled from "styled-components/native";
 
