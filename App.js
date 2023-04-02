@@ -13,7 +13,7 @@ import { Navigation } from "./src/infrastructure/navigation";
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
-import { FavouritesContectProvider } from "./src/services/favourites/favourites.context";
+import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -31,13 +31,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavouritesContectProvider>
+        <FavouritesContextProvider>
           <LocationContextProvider>
             <RestaurantsContextProvider>
               <Navigation />
             </RestaurantsContextProvider>
           </LocationContextProvider>
-        </FavouritesContectProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
