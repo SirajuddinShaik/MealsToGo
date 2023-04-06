@@ -11,6 +11,9 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
 `;
+const setIcon = (props, icon) => (
+  <List.Icon {...props} color="black" icon={icon} />
+);
 
 const AvatarContainer = styled.View`
   align-items: center;
@@ -35,12 +38,12 @@ export const SettingsScreen = ({ navigation }) => {
         <SettingsItem
           title="Favourites"
           description="View your Favorites"
-          left={(props) => <List.Icon {...props} color="black" icon="heart" />}
+          left={(props) => setIcon(props, "heart")}
           onPress={() => navigation.navigate("Favourites")}
         />
         <SettingsItem
           title="Logout"
-          left={(props) => <List.Icon {...props} color="black" icon="logout" />}
+          left={(props) => setIcon(props, "logout")}
           onPress={onLogout}
         />
       </List.Section>
