@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
@@ -25,13 +26,16 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   const loadUser = async () => {
     try {
+      setIsLoading(true);
       const value = await AsyncStorage.getItem("@user");
       if (value !== null) {
         setUser(JSON.parse(value));
+        console.log(user);
       }
     } catch (e) {
       console.log("error loading", e);
     }
+    setIsLoading(false);
   };
 
   const onLogin = (email, password) => {
@@ -39,6 +43,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     loginRequest(email, password)
       .then((u) => {
         setUser(u.user);
+        saveUser(u.user);
         setError(null);
         setIsLoading(false);
       })
@@ -58,6 +63,7 @@ export const AuthenticationContextProvider = ({ children }) => {
       registerRequest(email, password)
         .then((u) => {
           setUser(u.user);
+          saveUser(u.user);
           setError(null);
           setIsLoading(false);
         })
@@ -69,9 +75,11 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
   };
   const onLogout = () => {
-    logoutRequest();
     setUser(null);
+    saveUser(null);
+    logoutRequest();
   };
+
   useEffect(() => {
     loadUser();
   }, []);
@@ -82,9 +90,8 @@ export const AuthenticationContextProvider = ({ children }) => {
       if (u !== null && u !== undefined) {
         setUser(u);
       }
-      saveUser(user);
     });
-  }, [user]);
+  }, []);
 
   return (
     <AuthenticationContext.Provider
